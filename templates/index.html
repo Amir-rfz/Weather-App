@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather Detector</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background: url('https://wallpapers.com/images/hd/mountain-aesthetic-3pbvwsg3h7ksq2li.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    .navbar {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .form-control {
+      border-radius: 0;
+    }
+    .btn-default {
+      border-radius: 0;
+    }
+    .weather-info {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Weather Detector</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container text-center">
+    <h1>Check the Weather</h1>
+    <form action="" method="post" class="form-inline">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="text" class="form-control" name="city" placeholder="Enter city">
+      </div>
+      <button type="submit" class="btn btn-default">
+        <i class="glyphicon glyphicon-search"></i> Search
+      </button>
+    </form>
+    <br>
+    {% if data.country_code %}
+    <div class="weather-info">
+      <h2>{{city}}</h2>
+      <p>Country Code: {{data.country_code}}</p>
+      <p>Coordinates: {{data.coordinate}}</p>
+      <p>Temperature: {{data.temp}}°C</p>
+      <p>Pressure: {{data.pressure}} hPa</p>
+      <p>Humidity: {{data.humidity}}%</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
